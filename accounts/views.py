@@ -17,7 +17,7 @@ def register_customer(request):
             return redirect('login')
         else:
             messages.warning(request, 'Something went wrong, Please check form for any errors!')
-            return redirect('register=customer')
+            return redirect('register-customer')
     else:
         form = RegisterCustomerForm()
         context = {'form':form}
