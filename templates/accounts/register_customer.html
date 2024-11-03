@@ -13,18 +13,28 @@ Welcome to Gauntlet
         {% render_field form.email class="form-control" %}
         <label for="floatingInput">Email Address</label>
     </div>
-    <div class="form-floating mb-3"> 
-        {% render_field form.password1 class="form-control" %}
+    <div class="form-floating mb-3">
+        {% render_field form.password1 class="form-control" data-bs-toggle="tooltip" title="Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character." %}
         <label for="floatingInput">Enter Password</label>
     </div>
     <div class="form-floating mb-3">
         {% render_field form.password2 class="form-control" %}
         <label for="floatingInput">Confirm Password</label>
+    </div>
     <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
     <hr class="my-4">
     <small class="text-muted">Already have an account? <a href="{% url 'login' %}">Sign In</a></small>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
 
 {% endblock content %}
 
