@@ -14,7 +14,7 @@ Welcome to Gauntlet
         <label for="floatingInput">Email Address</label>
     </div>
     <div class="form-floating mb-3">
-        {% render_field form.password1 class="form-control" data-bs-toggle="tooltip" title="Password must be at least 8 characters long, include an uppercase letter, a lowercase letter, a number, and a special character." %}
+        {% render_field form.password1 class="form-control" data-bs-toggle="tooltip" title="Password must be at least 8 characters long, unique, without any user-attributes, a number, and not entirely numeric." %}
         <label for="floatingInput">Enter Password</label>
     </div>
     <div class="form-floating mb-3">
