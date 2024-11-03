@@ -13,7 +13,7 @@ def register_customer(request):
             var.is_customer = True
             var.username = var.email
             var.save()
-            messages.success(request, 'Account Created. Please Log=In')
+            messages.success(request, 'Account Created. Please Log in')
             return redirect('login')
         else:
             messages.warning(request, 'Something went wrong, Please check form for any errors!')

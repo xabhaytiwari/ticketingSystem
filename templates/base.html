@@ -31,12 +31,12 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{% url 'customer-active-tickets' %}">Active Tickets</a>
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'customer-resolved-tickets' %}">Resolved
-                                    Tickets</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a> </li>
+                            <li><a class="dropdown-item" href="{% url 'customer-resolved-tickets' %}">Resolved
+                                    Tickets</a></li>
+
                         </ul>
                     </li>
                     {% elif request.user.is_engineer %}
