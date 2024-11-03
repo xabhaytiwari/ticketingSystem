@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row p-5 mb-4 bg-light rounded-3">
+    <div class="col-md-8">
+        <div class="py-5">
+            <h1 class="display-6 fw-bold">{{ticket.ticket_title}}</h1>
+            <p class="">
+                {{ticket.ticket_description}}
+            </p>
+            {% if ticket.status == 'Pending' %}
+            <span class="badge bg-warning">Pending</span>
+            {% elif ticket.status == 'Active' %}
+            <span class="badge bg-success">Active</span>
+            {% elif ticket.status == 'Resolved' %}
+            <span class="badge bg-danger">Resolved</span>
+            {% endif %}
+        </div>
+    </div>
+    <div class="cold-md-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="py-5">
+                    <h2 class="display-6">Quick Info</h2>
+                    <p>Read more detailed inofrmation about the Ticket</p>
+                    <ul class="icon-list">
+                        <li>Ticket Unique ID: <b> {{ticket.ticket_id}}</b></li>
+                        <li>Customer Name: <b> {{ticket.customer}}</b></li>
+                        <li>Assigned Engineer: <b> {{ticket.engineer}}</b></li>
+                        <li>Created On: <b> {{ticket.created_on}}</b></li>
+                        <li>Ticket Severity: <b> {{ticket.severity}}</b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if ticket.is_resolved %}
+<div class="card">
+    <div class="card-body">
+        {{ticket.resolution_steps}}
+    </div>
+</div>
+
+{% else %}
+{% if request.user.is_engineer %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Resolution Steps</h5>
+        <form action="">
+            <div class="mb-3">
+                <label for="exampleFormControlTextArea1" class="form-label">Here's how the issue was resolved</label>
+                <textarea class="form-control" id="exampleFormControlTextArea1" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Mark as Resolved
+            </button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Resolution Confirmation</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                            <div class="modal-body">
+                                <b> I, as an engineer, am affirmative that the ticket has been resolved.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+
+{% endblock content %}

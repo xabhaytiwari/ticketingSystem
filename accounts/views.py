@@ -34,7 +34,7 @@ def login_user(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            messages.warning(request, 'Something went wrong. Please chech form for errors!')
+            messages.warning(request, 'Something went wrong. Please check form for errors!')
             return redirect('login')
     else:
         return render(request, 'accounts/login.html')  
