@@ -2,9 +2,13 @@ import random
 import string
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from .form import CreateTicketForm, AssignTicketForm
 from .models import Ticket
+
+User = get_user_model()
 
 def create_ticket(request):
     if request.method == 'POST':
@@ -17,6 +21,11 @@ def create_ticket(request):
                 try:
                     var.ticket_id = id
                     var.save()
+                    subject = f'{var.ticket_title} #{var.ticket_id}'
+                    message = 'Thank you for creating a ticket, we will assign an engineer soon.'
+                    email_from = 'G.ONE@email.com'
+                    recipient_list = [request.user.email, ]
+                    send_mail(subject, message, email_from, recipient_list)
                     messages.success(request, 'Your ticket has been submitted. A Support Engineer would reach out soon. ')    
                     return redirect('customer-active-tickets')
                 except IntegrityError:
@@ -53,12 +62,13 @@ def engineer_resolved_tickets(request):
     return render(request, 'ticket/engineer_resolved_tickets.html', context)
 
 def assign_ticket(request, ticket_id):
-    ticket = Ticket.objetcs.get(ticket_id = ticket_id)
+    ticket = Ticket.objects.get(ticket_id = ticket_id)
     if request.method == 'POST':
         form = AssignTicketForm(request.POST, instance = ticket)
         if form.is_valid():
             var = form.save(commit = False)
             var.is_assigned_to_engineer = True
+            var.status= 'Active'
             var.save()
             messages.success(request, f'Ticket has been assigned to {var.engineer}')
             return redirect('ticket-queue')
@@ -66,8 +76,9 @@ def assign_ticket(request, ticket_id):
             messages.warning(request, 'Something went wrong. Please check form for errors')
             return redirect('assign-ticket')
     else:
-        form = AssignTicketForm()
-        context = {'form': form}
+        form = AssignTicketForm(instance=ticket)
+        form.fields['engineer'].queryset = User.objects.filter(is_engineer=True)
+        context = {'form': form, 'ticket': ticket}
         return render(request, 'ticket/assign_ticket.html', context)    
     
     
