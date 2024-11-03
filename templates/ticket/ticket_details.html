@@ -40,6 +40,7 @@
 {% if ticket.is_resolved %}
 <div class="card">
     <div class="card-body">
+        <b>Resolution Steps:</b>
         {{ticket.resolution_steps}}
     </div>
 </div>
@@ -49,19 +50,17 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">Resolution Steps</h5>
-        <form action="">
+        <form action="{% url 'resolve-ticket' ticket.ticket_id %}" method="POST">
+            {% csrf_token %}
             <div class="mb-3">
-                <label for="exampleFormControlTextArea1" class="form-label">Here's how the issue was resolved</label>
-                <textarea class="form-control" id="exampleFormControlTextArea1" rows="3"></textarea>
+                <label for="resolutionSteps" class="form-label">Here's how the issue was resolved</label>
+                <textarea class="form-control" id="resolutionSteps" rows="3" name="rs" required></textarea>
             </div>
-          
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Mark as resolved!
             </button>
 
-           
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -73,17 +72,15 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Confirm and Resolve</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </form>
-
     </div>
 </div>
+
 {% endif %}
 {% endif %}
 
