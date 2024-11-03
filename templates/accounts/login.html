@@ -1,7 +1,8 @@
 {% extends 'accounts/base.html' %}
 
+
 {% block heading %}
-Log in to Continue
+Welcome to Gauntlet
 {% endblock heading %}
 
 {% block content %}
@@ -21,6 +22,24 @@ Log in to Continue
     <hr class="my-4">
     <small class="text-muted">Do not have an account? <a href="{% url 'register-customer' %}">Sign Up</a></small>
 </form>
+
+<div class="row mt-5">
+    <div class="col-lg-14 rounded-3 bg-light">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><strong>Faculty:</strong> <a href="https://www.linkedin.com/in/priodyuti-pradhan-42642b1b" target="_blank">Dr. Priodyuti Pradhan</a></p>
+                <p class="card-text"><strong>Mentor:</strong> <a href="https://www.linkedin.com/in/prayas-raj-549598230" target="_blank">Shri Prayas Raj</a></p>
+                <h5 class="card-title">Team Members ❤️</h5>
+                <p class="card-text"><a href="https://www.linkedin.com/in/abhay-tiwari-in" target="_blank">Abhay Tiwari, Group Leader, Back-End (AD23B1001)</a></p>
+                <p class="card-text"><a href="https://www.linkedin.com/in/ansh-gupta-4ba894287" target="_blank">Ansh Gupta, Front-End (AD23B1005)</a></p>
+                <p class="card-text"><a href="https://www.linkedin.com/in/ayush-raj-6b9172298" target="_blank">Ayush Raj Singh, Front-End (AD23B1008)</a></p>
+                <p class="card-text"><a href="https://www.linkedin.com/in/deepak-kumar-673a7830a" target="_blank">Deepak Kumar, Back-End (AD23B1016)</a></p>
+                <p class="card-text">Himanshu Yadav, Database (CS23B1026)</p>
+                <p class="card-text">Abhishek Mittal (CS23B1046)</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
 

@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expan-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Django-Tickets</a>
+            <a class="navbar-brand" href="/">Guantlet - Ticketing System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -29,8 +29,10 @@
                         <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Tickets</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'customer-active-tickets' %}">Active Tickets</a></li>
-                            <li><a class="dropdown-item" href="{% url 'customer-resolved-tickets' %}">Resolved Tickets</a></li>
+                            <li><a class="dropdown-item" href="{% url 'customer-active-tickets' %}">Active Tickets</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'customer-resolved-tickets' %}">Resolved
+                                    Tickets</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -42,13 +44,13 @@
                         <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Tickets</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'engineer-active-tickets' %}">Active Tickets</a></li>
-                            <li><a class="dropdown-item" href="{% url 'engineer-resolved-tickets' %}">Resolved Tickets</a></li>
+                            <li><a class="dropdown-item" href="{% url 'engineer-active-tickets' %}">Active Tickets</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a> </li>
-                        </ul>
+                            <li><a class="dropdown-item" href="{% url 'engineer-resolved-tickets' %}">Resolved
+                                    Tickets</a></li>
                     </li>
                     {% endif %}
                     {% if request.user.is_authenticated %}
