@@ -16,11 +16,18 @@ def register_customer(request):
             messages.success(request, 'Account Created. Please Log in')
             return redirect('login')
         else:
-            messages.warning(request, 'Something went wrong, Please check form for any errors!')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    if field == 'email':
+                        messages.warning(request, f'Email error: {error}')
+                    elif field == 'password':
+                        messages.warning(request, f'Password error: {error}')
+                    else:
+                        messages.warning(request, f'Error in {field}: {error}')
             return redirect('register-customer')
     else:
         form = RegisterCustomerForm()
-        context = {'form':form}
+        context = {'form': form}
         return render(request, 'accounts/register_customer.html', context)
     
 def login_user(request):
