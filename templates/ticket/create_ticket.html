@@ -24,6 +24,14 @@
                     {% render_field form.ticket_description class="form-control" %}
                     <label for="floatingPassword">Tell us more about the issue -></label>
                 </div>
+                <div class="form-floating mb-3">
+                    {% render_field form.ticket_type class="form-control" %}
+                    <label for="floatingPassword"> Ticket Class -></label>
+                </div>
+                <div class="form-floating mb-3">
+                    {% render_field form.severity class="form-control" %}
+                    <label for="floatingPassword"> Ticket Severity -> </label>
+                </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit"> Submit</button>
             </form>
         </div>
